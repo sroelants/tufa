@@ -1,0 +1,16 @@
+CREATE TABLE services ( 
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  secret_digest TEXT NOT NULL,
+  password INTEGER,
+  created_at INTEGER NOT NULL,
+  last_used_at INTEGER,
+  FOREIGN KEY(password) REFERENCES password(id)
+);
+
+CREATE TABLE passwords ( 
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  salt VARCHAR NOT NULL,
+  digest VARCHAR NOT NULL,
+  created_at INTEGER NOT NULL
+);
