@@ -3,9 +3,9 @@ use hmac::{Hmac, Mac};
 
 pub struct Totp<'a> {
     secret: &'a [u8],
-    max_digits: u32,
-    reference_time: u64,
-    window: u64,
+    pub max_digits: u32,
+    pub reference_time: u64,
+    pub window: u64,
 }
 
 impl<'a> Totp<'a> {

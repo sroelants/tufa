@@ -1,4 +1,5 @@
 use diesel::prelude::*;
+use services::dsl;
 use crate::db::schema::services;
 use crate::util::now;
 
@@ -33,6 +34,11 @@ pub fn create(conn: &mut SqliteConnection, name: &str, secret: &str) -> Service 
 }
 
 pub fn get_by_name(conn: &mut SqliteConnection, name: &str) -> Option<Service> {
-    use services::dsl;
     dsl::services.filter(dsl::name.eq(name)).first(conn).ok()
+}
+
+pub fn remove(conn: &mut SqliteConnection, name: &str) {
+    diesel::delete(dsl::services.filter(dsl::name.eq(name)))
+        .execute(conn)
+        .expect("Failed to remove service");
 }
