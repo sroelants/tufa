@@ -53,7 +53,7 @@ impl<'a> Totp<'a> {
         // Reduce to required number of digits and return as a padded string
         let otp = truncated % 10u32.pow(self.max_digits);
 
-        format!("{0:1$}", otp , self.max_digits as usize)
+        format!("{:01$}", otp , self.max_digits as usize)
     }
 }
 
