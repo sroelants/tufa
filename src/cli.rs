@@ -19,7 +19,7 @@ pub enum Commands {
     },
 
     // Remove a service
-    Remove {
+    Rm {
         /// The service you'd like to remove
         service: String,
     },

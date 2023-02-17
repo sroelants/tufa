@@ -30,7 +30,7 @@ fn main() {
             }
         }
 
-        Some(Commands::Remove { service }) => {
+        Some(Commands::Rm { service }) => {
             remove_service(&mut connection, service);
         }
 
@@ -47,7 +47,26 @@ fn add_service(conn: &mut SqliteConnection, name: &str, secret: &str) -> Service
 }
 
 fn remove_service(conn: &mut SqliteConnection, name: &str) {
-    models::service::remove(conn, name);
+    use dialoguer::Confirm;
+    let service_exists = models::service::get_by_name(conn, name).is_some();
+
+    if service_exists {
+        let confirmed = Confirm::new()
+        .with_prompt(
+            format!("{} {}?", 
+                style("⚠️ Are you sure you want to remove 2FA for").red(), 
+                style(name).blue().bold()
+            )
+        )
+        .interact()
+        .is_ok();
+
+        if confirmed {
+            models::service::remove(conn, name);
+        }
+    } else {
+        println!("Service {} not found!", style(name).blue());
+    }
 }
 
 fn get_service(conn: &mut SqliteConnection, name: &str) -> Option<Service> {
