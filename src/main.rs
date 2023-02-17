@@ -82,14 +82,14 @@ fn list_services(conn: &mut SqliteConnection) {
 fn render_progress_bar(otp: &Totp)  {
     use indicatif::ProgressBar;
     let bar = ProgressBar::new(otp.window);
-    bar.set_style(ProgressStyle::with_template("{msg} {bar:40.cyan/blue}")
+    bar.set_style(ProgressStyle::with_template("{msg} {bar:40.blue/cyan}")
         .unwrap());
 
     for _ in 0.. {
         let now = util::now();
         let remaining = otp.window - (now - otp.reference_time) % otp.window;
         bar.set_position(remaining);
-        bar.set_message(format!("Your code is {}", style(otp.generate()).cyan()));
+        bar.set_message(format!("🔑 Your code is {}  ", style(otp.generate()).blue()));
         thread::sleep(Duration::from_secs(1));
     }
 
