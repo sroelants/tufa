@@ -34,6 +34,10 @@ fn main() {
             remove_service(&mut connection, service);
         }
 
+        Some(Commands::Ls) => {
+            list_services(&mut connection);
+        }
+
         _ => {}
     }
 }
@@ -48,6 +52,12 @@ fn remove_service(conn: &mut SqliteConnection, name: &str) {
 
 fn get_service(conn: &mut SqliteConnection, name: &str) -> Option<Service> {
     models::service::get_by_name(conn, name)
+}
+
+fn list_services(conn: &mut SqliteConnection) {
+    models::service::get_all(conn).into_iter()
+        .map(|service| service.name)
+        .for_each(|name| println!("{}", name))
 }
 
 fn render_progress_bar(otp: &Totp)  {

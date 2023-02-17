@@ -28,5 +28,8 @@ pub enum Commands {
     Gen {
         /// The service you'd like to generate a code for
         service: String,
-    }
+    },
+
+    // List all the registered services
+    Ls,
 }

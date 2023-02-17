@@ -37,6 +37,10 @@ pub fn get_by_name(conn: &mut SqliteConnection, name: &str) -> Option<Service> {
     dsl::services.filter(dsl::name.eq(name)).first(conn).ok()
 }
 
+pub fn get_all(conn: &mut SqliteConnection) -> Vec<Service> {
+    dsl::services.get_results(conn).expect("Could not read database.")
+}
+
 pub fn remove(conn: &mut SqliteConnection, name: &str) {
     diesel::delete(dsl::services.filter(dsl::name.eq(name)))
         .execute(conn)
