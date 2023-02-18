@@ -5,8 +5,8 @@ A simple 2-factor authentication generator.
 a serious security consideration to take note of..
 
 Left to do:
-- [ ] Encrypt secrets with master password
-- [ ] Actual error handling
-- [ ] Confirmation prompting
-- [ ] `tufa ls`
-- [ ] rename to `tufa rm`
+- [✓] Encrypt secrets with master password
+- [✓] Actual error handling
+- [✓] Confirmation prompting
+- [✓] `tufa ls`
+- [✓] rename to `tufa rm`

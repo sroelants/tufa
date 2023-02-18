@@ -6,6 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+aes-gcm = "0.10.1"
+anyhow = "1.0.69"
 argon2 = "0.4.1"
 clap = { version = "4.1.4", features = ["derive"] }
 clipboard = "0.5.0"
@@ -15,9 +17,7 @@ diesel = { version = "2.0.3", features = ["sqlite", "returning_clauses_for_sqlit
 diesel_migrations = "2.0.0"
 dotenv = "0.15.0"
 hex = "0.4.3"
-hex-literal = "0.3.4"
 hmac = "0.12.1"
 indicatif = "0.17.3"
 libsqlite3-sys = { version = "0.25.2", features = ["bundled"] }
-scrypt = "0.10.0"
 sha1 = "0.10.5"

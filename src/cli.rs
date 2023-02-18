@@ -16,6 +16,10 @@ pub enum Commands {
 
         /// The 2FA secret provided by the service
         secret: String,
+
+        /// Encrypt the secret with a password
+        #[arg(short, long)]
+        encrypted: bool,
     },
 
     // Remove a service

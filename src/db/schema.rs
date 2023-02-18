@@ -5,6 +5,7 @@ diesel::table! {
         id -> Nullable<Integer>,
         name -> Text,
         secret -> Text,
+        encrypted -> Integer,
         created_at -> Integer,
         last_used_at -> Nullable<Integer>,
     }
