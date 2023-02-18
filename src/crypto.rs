@@ -7,30 +7,10 @@ use aes_gcm::aead::Aead;
 use argon2::{
     password_hash::{
         rand_core::OsRng,
-        PasswordHash, PasswordHasher, PasswordVerifier, SaltString
+        PasswordHasher, SaltString
     },
     Argon2
 };
-
-pub fn hash_password(password: &str) -> Result<String, Error> {
-    let argon2 = Argon2::default();
-    let salt = SaltString::generate(&mut OsRng);
-
-    Ok(argon2.hash_password(password.as_bytes(), &salt)
-        .map_err(|_| Error::msg("Failed to hash password"))?
-        .to_string())
-}
-
-pub fn verify_password(password: &str, password_hash: &str) -> bool {
-    if let Ok(parsed_hash) = PasswordHash::new(&password_hash) {
-        Argon2::default()
-            .verify_password(password.as_bytes(), &parsed_hash)
-            .is_ok()
-    } else  {
-        false
-    }
-}
-
 
 // Struct that holds all the information needed to decrypt the secret later
 pub struct AesData {
@@ -131,15 +111,6 @@ fn derive_key(password: &str, salt: &SaltString) -> Result<GenericArray<u8, U32>
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn test_hashing() -> Result<(), Error> {
-        let password = "supersecret";
-        let hash = hash_password(password)?;
-
-        assert!(verify_password(password, &hash));
-        Ok(())
-    }
 
     #[test]
     fn test_encryption() -> Result<(), Error> {

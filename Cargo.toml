@@ -10,7 +10,6 @@ aes-gcm = "0.10.1"
 anyhow = "1.0.69"
 argon2 = "0.4.1"
 clap = { version = "4.1.4", features = ["derive"] }
-clipboard = "0.5.0"
 console = "0.15.5"
 dialoguer = "0.10.3"
 diesel = { version = "2.0.3", features = ["sqlite", "returning_clauses_for_sqlite_3_35" ] }

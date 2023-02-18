@@ -26,9 +26,17 @@ fn main() {
             add_service(&mut connection, service, secret, *encrypted)
         }
 
-        Some(Commands::Gen { service }) => { 
-            generate_otp(&mut connection, service)
-                .map(|otp| render_progress_bar(&otp))
+        Some(Commands::Gen { service, oneshot }) => { 
+            let otp = generate_otp(&mut connection, service);
+
+            if *oneshot {
+                otp.and_then(|otp| -> Result<(), Error> {
+                    println!("{}", otp.generate()?);
+                    Ok(())
+                })
+            } else {
+                    otp.map(|otp| render_progress_bar(&otp))
+            }
         }
 
         Some(Commands::Rm { service }) => {
@@ -71,8 +79,6 @@ fn add_service(
 fn generate_otp(conn: &mut SqliteConnection, service: &str) -> Result<Totp, Error> {
     let service = get_service(conn, service)
         .ok_or(Error::msg("Could not find service."))?;
-
-    println!("{:?}", service);
 
     let secret = if service.encrypted == 1 {
         let password = Password::new()

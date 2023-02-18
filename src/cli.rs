@@ -32,6 +32,11 @@ pub enum Commands {
     Gen {
         /// The service you'd like to generate a code for
         service: String,
+
+        /// Simply print the code and nothing else. Useful for piping into 
+        /// a clipboard utility like `xclip`.
+        #[arg(short, long)]
+        oneshot: bool,
     },
 
     // List all the registered services

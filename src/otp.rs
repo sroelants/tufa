@@ -10,6 +10,7 @@ pub struct Totp {
 }
 
 impl Totp {
+    #[allow(dead_code)]
     pub fn new(secret: &str, max_digits: u32, reference_time: u64, window: u64) -> Totp {
         Totp {
             secret: secret.as_bytes().to_vec(),
