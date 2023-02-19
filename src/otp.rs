@@ -12,8 +12,13 @@ pub struct Totp {
 impl Totp {
     #[allow(dead_code)]
     pub fn new(secret: &str, max_digits: u32, reference_time: u64, window: u64) -> Totp {
+        // Remove any whitespace
+        let secret: String = secret.split_whitespace().collect();
+        let alphabet = base32::Alphabet::RFC4648 { padding: false };
+        
         Totp {
-            secret: secret.as_bytes().to_vec(),
+            // Decode base32 to bytes
+            secret: base32::decode(alphabet, &secret).unwrap(),
             max_digits,
             reference_time,
             window
@@ -21,8 +26,13 @@ impl Totp {
     }
 
     pub fn simple(secret: &str) -> Totp {
+        // Remove any whitespace
+        let secret: String = secret.split_whitespace().collect();
+        let alphabet = base32::Alphabet::RFC4648 { padding: false };
+        
         Totp {
-            secret: secret.as_bytes().to_vec(),
+            // Decode base32 to bytes
+            secret: base32::decode(alphabet, &secret).unwrap(),
             max_digits: 6,
             reference_time: 0,
             window: 30,

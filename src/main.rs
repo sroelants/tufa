@@ -95,6 +95,7 @@ fn generate_otp(conn: &mut SqliteConnection, service: &str) -> Result<Totp, Erro
         service.secret
     };
 
+
     Ok(Totp::simple(&secret))
 }
 
