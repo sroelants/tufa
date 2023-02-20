@@ -10,3 +10,4 @@ Left to do:
 - [✓] `tufa ls`
 - [✓] rename to `tufa rm`
 - ~~Clipboard integration~~ _(Just pipe into xclip)_
+- [ ] Add remote sync, similar to [atuin](https://github.com/ellie/atuin)
