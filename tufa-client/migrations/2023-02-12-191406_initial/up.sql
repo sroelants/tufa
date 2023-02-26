@@ -1,6 +1,6 @@
 CREATE TABLE services ( 
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
+  name TEXT NOT NULL UNIQUE,
   secret TEXT NOT NULL,
   encrypted INTEGER NOT NULL,
   created_at INTEGER NOT NULL,

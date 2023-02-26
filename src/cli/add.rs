@@ -2,7 +2,7 @@ use clap::Parser;
 use anyhow::Result;
 use dialoguer::Password;
 
-use crate::{crypto::AesData, db::{self, models}};
+use tufa_client::{crypto::AesData, db::{self, models}};
 
 #[derive(Parser)]
 #[command(infer_subcommands = true)]

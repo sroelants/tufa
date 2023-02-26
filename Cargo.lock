@@ -702,7 +702,36 @@ dependencies = [
  "indicatif",
  "libsqlite3-sys",
  "sha1",
+ "tufa-client",
+ "tufa-common",
+ "tufa-server",
 ]
+
+[[package]]
+name = "tufa-client"
+version = "0.1.0"
+dependencies = [
+ "aes-gcm",
+ "anyhow",
+ "argon2",
+ "base32",
+ "diesel",
+ "diesel_migrations",
+ "dotenv",
+ "hex",
+ "hmac",
+ "libsqlite3-sys",
+ "sha1",
+ "tufa-common",
+]
+
+[[package]]
+name = "tufa-common"
+version = "0.1.0"
+
+[[package]]
+name = "tufa-server"
+version = "0.1.0"
 
 [[package]]
 name = "typenum"

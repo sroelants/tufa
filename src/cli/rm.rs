@@ -3,7 +3,7 @@ use anyhow::{Result, Error};
 use console::style;
 use dialoguer::Confirm;
 
-use crate::db::{self, models};
+use tufa_client::db::{self, models};
 
 #[derive(Parser)]
 #[command(infer_subcommands = true)]

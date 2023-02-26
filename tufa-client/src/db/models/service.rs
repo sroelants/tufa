@@ -1,7 +1,7 @@
 use diesel::prelude::*;
 use services::dsl;
 use crate::db::schema::services;
-use crate::util::now;
+use tufa_common::util::now;
 use anyhow::Error;
 
 #[derive(Queryable, Debug)]

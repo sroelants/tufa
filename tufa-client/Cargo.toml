@@ -1,26 +1,15 @@
 [package]
-name = "tufa"
+name = "tufa-client"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[workspace]
-members = ["tufa-client", "tufa-server", "tufa-common"]
-
 [dependencies]
-tufa-client = { path = "tufa-client", version = "0.1.0" }
-tufa-server = { path = "tufa-server", version = "0.1.0" }
-tufa-common = { path = "tufa-common", version = "0.1.0" }
-# Cli
-clap = { version = "4.1.4", features = ["derive"] }
-console = "0.15.5"
-dialoguer = "0.10.3"
-dotenv = "0.15.0"
-indicatif = "0.17.3"
-anyhow = "1.0.69"
+tufa-common = { path = "../tufa-common", version = "0.1.0" }
 
-# Client
+dotenv = "0.15.0"
+anyhow = "1.0.69"
 aes-gcm = "0.10.1"
 argon2 = "0.4.1"
 base32 = "0.4.0"
@@ -30,6 +19,3 @@ libsqlite3-sys = { version = "0.25.2", features = ["bundled"] }
 hex = "0.4.3"
 hmac = "0.12.1"
 sha1 = "0.10.5"
-
-#Server
-

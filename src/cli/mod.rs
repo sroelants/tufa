@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand};
 
-use crate::db::{self, models};
+use tufa_client::db::{self, models};
 use anyhow::Result;
 
 mod add;

@@ -1,8 +1,4 @@
-mod otp;
-mod db;
-mod crypto;
 mod cli;
-mod util;
 
 use cli::Tufa;
 use clap::Parser;

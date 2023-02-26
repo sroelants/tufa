@@ -7,7 +7,8 @@ use dialoguer::Password;
 use diesel::SqliteConnection;
 use indicatif::ProgressStyle;
 
-use crate::{crypto::AesData, db::{self, models::{self, service::Service}}, otp::Totp, util};
+use tufa_client::{crypto::AesData, db::{self, models::{self, service::Service}}, otp::Totp};
+use tufa_common::util;
 
 #[derive(Parser)]
 #[command(infer_subcommands = true)]
@@ -63,7 +64,6 @@ fn generate_otp(conn: &mut SqliteConnection, service: &str) -> Result<Totp> {
     } else {
         service.secret
     };
-
 
     Ok(Totp::simple(&secret))
 }
